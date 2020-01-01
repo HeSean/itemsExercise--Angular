@@ -39,14 +39,12 @@ export class ItemDetailsComponent implements OnInit {
           // tempAmount = responseItem.amount;
           // temppInventoryCode = responseItem.inventoryCode;
           this.itemForm.controls.itemName.setValue(responseItem.name);
-          this.itemForm.controls.amount.setValue(responseItem.amount);
           this.itemForm.controls.inventoryCode.setValue(responseItem.inventoryCode);
           this.itemNo = responseItem.itemNo;
         });
     }
     this.itemForm = new FormGroup({
       itemName: new FormControl('', Validators.required),
-      amount: new FormControl(0, Validators.required),
       inventoryCode: new FormControl('', Validators.required),
 
     });
@@ -57,7 +55,7 @@ export class ItemDetailsComponent implements OnInit {
     const item = new Item(
       this.itemNo,
       this.itemForm.controls.itemName.value,
-      this.itemForm.controls.amount.value,
+      0,
       this.itemForm.controls.inventoryCode.value);
     console.log(item);
 
@@ -72,7 +70,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['../list'], { relativeTo: this.route });
+    this.router.navigate(['../list']);
   }
 
   deleteItem() {

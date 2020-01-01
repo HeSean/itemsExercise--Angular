@@ -12,15 +12,6 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <label for="amount">Amount</label>
-              <input type="text" id="amount" class="form-control" formControlName="amount">
-            </div>
-          </div>
-        </div>
-
 
         <div class="row">
           <div class="col-xs-12">
@@ -41,6 +32,8 @@
             <div class="btn-toolbar">
               <button type="submit" class="btn btn-success" [disabled]="!this.itemForm.valid">Save</button>
               <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+              <button type="submit" class="btn btn-success" [disabled]="!this.itemForm.valid" [routerLink]="'/updateAmount'">Update Amount</button>
+
               <button class="btn btn-danger" (click)="deleteItem()">Delete Item</button>
             </div>
           </div>
