@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-12">
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-listed-item *ngFor="let item of items; let i = index" [item]="item" [index]="i+1"></app-listed-item>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-12 btn-toolbar" >
+    <button [routerLink]="['/details']" routerLinkActive="router-link-active"  class="btn btn-success">
+      New Item
+    </button>
+
+  </div>
+</div>
