@@ -13,16 +13,18 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
 
 
-  items: any[];
+  items: Item[];
   private itemSub: Subscription;
 
   constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.itemService.getAllItems().subscribe(res => {
+    this.itemSub = this.itemService.getAllItems().subscribe(res => {
+      if (res){
+        this.items.push();
+      }
       this.items = res.body;
     });
-
 
   }
 

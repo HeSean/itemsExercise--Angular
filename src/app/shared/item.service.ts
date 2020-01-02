@@ -20,6 +20,8 @@ export class ItemService {
   private depositUrl = 'http://localhost:8080/item/depositItemAmount?itemNo=';
 
 
+  itemsChanged = new Subject<Item[]>();
+
 
   constructor(private http: HttpClient, private router: Router) {
 
