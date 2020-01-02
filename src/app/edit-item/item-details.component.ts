@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item.model';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-item-details',
@@ -22,22 +21,16 @@ export class ItemDetailsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.itemNo = +params.id;
       this.editMode = params.id != null;
-      console.log('editMode - ' + this.editMode + ' ****  params ' + params.id + ' **** itemNo ' + this.itemNo);
+      // console.log('editMode - ' + this.editMode + ' ****  params ' + params.id + ' **** itemNo ' + this.itemNo);
       this.initForm();
     });
   }
 
   initForm() {
-    // let tempName = '';
-    // let tempAmount = 0;
-    // let temppInventoryCode = '';
 
     if (this.editMode) {
       this.itemService.getItem(this.itemNo)
         .subscribe(responseItem => {
-          // tempName = responseItem.name;
-          // tempAmount = responseItem.amount;
-          // temppInventoryCode = responseItem.inventoryCode;
           this.itemForm.controls.itemName.setValue(responseItem.name);
           this.itemForm.controls.amount.setValue(responseItem.amount);
           this.itemForm.controls.inventoryCode.setValue(responseItem.inventoryCode);
@@ -47,32 +40,29 @@ export class ItemDetailsComponent implements OnInit {
     this.itemForm = new FormGroup({
       itemName: new FormControl('', Validators.required),
       amount: new FormControl(0, Validators.required),
-      inventoryCode: new FormControl('', Validators.required),
-
+      inventoryCode: new FormControl('', Validators.required)
     });
   }
 
 
   onSubmit() {
-    const item = new Item(
+    const newItem = new Item(
       this.itemNo,
       this.itemForm.controls.itemName.value,
       this.itemForm.controls.amount.value,
       this.itemForm.controls.inventoryCode.value);
-    console.log(item);
 
     if (this.editMode) {
-      this.itemService.updateItem(item).subscribe();
+
+      this.itemService.updateItem(newItem).subscribe();
     } else {
-      this.itemService.addItem(item).subscribe(res => {
-        console.log(res);
-      });
+      this.itemService.addItem(newItem).subscribe();
     }
     this.onCancel();
   }
 
   onCancel() {
-    this.router.navigate(['../list'], { relativeTo: this.route });
+    this.router.navigate(['../list']);
   }
 
   deleteItem() {

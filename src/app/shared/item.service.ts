@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Item } from './item.model';
-import { map, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -20,12 +18,15 @@ export class ItemService {
   private depositUrl = 'http://localhost:8080/item/depositItemAmount?itemNo=';
 
 
-  itemsChanged = new Subject<Item[]>();
-
+  // private items: Item[];
+  // private observableItems: BehaviorSubject<Item[]>;
 
   constructor(private http: HttpClient, private router: Router) {
+    // this.items = new Array<Item>();
+    // this.observableItems = new BehaviorSubject([]) as BehaviorSubject<Item[]>;
+  }
 
-   }
+
 
 
   getItem(itemNo: number) {
@@ -33,11 +34,14 @@ export class ItemService {
   }
 
   getAllItems() {
+    // return this.observableItems.asObservable();
     return this.http.get<Item[]>(this.getAllItemsUrl, { observe: 'response', responseType: 'json' });
   }
 
   addItem(item: Item) {
-    return this.http.post<Item>(this.addItemUrl, item);
+    // this.items.push(item);
+    // this.observableItems.next(Object.assign({}, this.items));
+    return this.http.post<Item>(this.addItemUrl, item, { observe: 'response', responseType: 'json' });
   }
 
   updateItem(item: Item) {

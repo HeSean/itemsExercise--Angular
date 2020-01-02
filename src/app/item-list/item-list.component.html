@@ -13,10 +13,13 @@
 <hr>
 
 <div class="row">
-  <div class="col-xs-12 btn-toolbar" >
-    <button [routerLink]="['/details']" routerLinkActive="router-link-active"  class="btn btn-success">
+  <div class="col-xs-12 btn-toolbar">
+    <button [routerLink]="['/details']" routerLinkActive="router-link-active" class="btn btn-success">
       New Item
     </button>
+
+    <button (click)="refreshList()" class="btn btn-success">
+      Refresh </button>
 
   </div>
 </div>
