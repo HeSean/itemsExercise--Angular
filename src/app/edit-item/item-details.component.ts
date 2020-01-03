@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ItemService } from '../shared/item.service';
@@ -23,13 +23,11 @@ export class ItemDetailsComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.itemNo = +params.id;
       this.editMode = params.id != null;
-      // console.log('editMode - ' + this.editMode + ' ****  params ' + params.id + ' **** itemNo ' + this.itemNo);
       this.initForm();
     });
   }
 
   initForm() {
-
     this.itemForm = new FormGroup({
       itemName: new FormControl('', Validators.required),
       amount: new FormControl(0, Validators.required),
@@ -45,8 +43,6 @@ export class ItemDetailsComponent implements OnInit {
           this.currentAmount = responseItem.amount;
         });
     }
-
-
   }
 
   deleteItem() {
@@ -71,5 +67,4 @@ export class ItemDetailsComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../list']);
   }
-
 }

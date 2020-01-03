@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/item.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../shared/item.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class ItemListComponent implements OnInit {
 
   items: Item[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
     this.refreshList();

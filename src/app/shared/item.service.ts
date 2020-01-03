@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Item } from './item.model';
 
 
@@ -20,9 +19,7 @@ export class ItemService {
 
 
 
-  constructor(private http: HttpClient, private router: Router) {  }
-
-
+  constructor(private http: HttpClient) {  }
 
 
   getItem(itemNo: number) {

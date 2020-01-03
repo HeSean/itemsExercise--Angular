@@ -1,15 +1,11 @@
 <mat-toolbar color="warn" class="crm-navigation-bar">
   <mat-toolbar-row>
 
-
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-
-
     <h1 [routerLink]="['/home']" routerLinkActive="router-link-active" style="cursor: pointer;">Items</h1>
     <span class="menu-spacer"></span>
-
 
   </mat-toolbar-row>
 </mat-toolbar>
@@ -17,6 +13,7 @@
 
 
 <mat-sidenav-container style="height: -webkit-fill-available;">
+
   <mat-sidenav #drawer mode="side" opened role="navigation">
     <mat-nav-list>
       <b id="admin-navbar">
@@ -26,8 +23,6 @@
     </mat-nav-list>
   </mat-sidenav>
 
-
-
   <div class="container" id="wrapper">
     <div>
       <div class="col-md-12">
@@ -36,7 +31,5 @@
       </div>
     </div>
   </div>
-
-
 
 </mat-sidenav-container>

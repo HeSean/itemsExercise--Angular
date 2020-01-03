@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ItemService } from 'src/app/shared/item.service';
-import { ItemDetailsComponent } from '../item-details.component';
-import { Item } from 'src/app/shared/item.model';
+
 
 @Component({
   selector: 'app-update-amount',
@@ -17,14 +16,8 @@ export class UpdateAmountComponent implements OnInit {
   @Input() currentAmount: number;
   @Input() itemNo: number;
 
-
-
   constructor(
-    @Inject(ItemDetailsComponent) private parent: ItemDetailsComponent,
-    private itemService: ItemService,
-    private route: ActivatedRoute,
-    private router: Router) {
-  }
+    private itemService: ItemService, private router: Router) { }
 
   ngOnInit() {
     this.initForm();
@@ -44,7 +37,7 @@ export class UpdateAmountComponent implements OnInit {
   withdraw() {
     this.newAmount = this.amountForm.controls.newAmount.value;
     if (this.newAmount > this.currentAmount) {
-      alert('cannot withdraw that amount');
+      alert('Cannot withdraw that amount, limit is ' +  this.currentAmount);
     } else {
       this.itemService.withdrawAmount(this.itemNo, this.newAmount).subscribe(() => { this.onCancel(); });
     }
@@ -53,7 +46,5 @@ export class UpdateAmountComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../list']);
   }
-
-
 }
 
