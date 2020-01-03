@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ItemService } from '../shared/item.service';
@@ -14,6 +14,8 @@ export class ItemDetailsComponent implements OnInit {
   itemForm: FormGroup;
   itemNo = 0;
   editMode = false;
+  isOn = false;
+  currentAmount: number;
 
   constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router) { }
 
@@ -28,6 +30,11 @@ export class ItemDetailsComponent implements OnInit {
 
   initForm() {
 
+    this.itemForm = new FormGroup({
+      itemName: new FormControl('', Validators.required),
+      amount: new FormControl(0, Validators.required),
+      inventoryCode: new FormControl('', Validators.required)
+    });
     if (this.editMode) {
       this.itemService.getItem(this.itemNo)
         .subscribe(responseItem => {
@@ -35,13 +42,11 @@ export class ItemDetailsComponent implements OnInit {
           this.itemForm.controls.amount.setValue(responseItem.amount);
           this.itemForm.controls.inventoryCode.setValue(responseItem.inventoryCode);
           this.itemNo = responseItem.itemNo;
+          this.currentAmount = responseItem.amount;
         });
     }
-    this.itemForm = new FormGroup({
-      itemName: new FormControl('', Validators.required),
-      amount: new FormControl(0, Validators.required),
-      inventoryCode: new FormControl('', Validators.required)
-    });
+
+
   }
 
 
@@ -53,7 +58,6 @@ export class ItemDetailsComponent implements OnInit {
       this.itemForm.controls.inventoryCode.value);
 
     if (this.editMode) {
-
       this.itemService.updateItem(newItem).subscribe();
     } else {
       this.itemService.addItem(newItem).subscribe();

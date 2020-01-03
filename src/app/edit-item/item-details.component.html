@@ -2,6 +2,7 @@
   <div class="col-xs-12">
     <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
 
+
       <div>
         <div class="row">
           <div class="col-xs-12">
@@ -16,7 +17,7 @@
           <div class="col-xs-12">
             <div class="form-group">
               <label for="amount">Amount</label>
-              <input type="text" id="amount" class="form-control" formControlName="amount">
+              <input [readonly]="editMode" type="text" id="amount" class="form-control" formControlName="amount">
             </div>
           </div>
         </div>
@@ -30,12 +31,7 @@
             </div>
           </div>
         </div>
-
-
-
-
-        <hr>
-
+<br>
         <div class="row">
           <div class="col-xs-12">
             <div class="btn-toolbar">
@@ -45,8 +41,9 @@
             </div>
           </div>
         </div>
-
       </div>
     </form>
+    <hr *ngIf="editMode">
+    <app-update-amount *ngIf="editMode" [currentAmount] = "currentAmount" [itemNo] = "itemNo" ></app-update-amount>
   </div>
 </div>

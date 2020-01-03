@@ -10,9 +10,6 @@ import { ItemService } from '../shared/item.service';
 })
 export class ItemListComponent implements OnInit {
 
-
-
-
   items: Item[];
 
   constructor(private route: ActivatedRoute, private router: Router, private itemService: ItemService) { }

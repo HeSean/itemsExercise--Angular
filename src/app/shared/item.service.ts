@@ -53,11 +53,11 @@ export class ItemService {
   }
 
   withdrawAmount(itemNo, amount) {
-    return this.http.put(this.withdrawUrl + itemNo + '?amount=' + amount, { observe: 'response', responseType: 'json' });
+    return this.http.put(this.withdrawUrl + itemNo + '&amount=' + amount, { observe: 'response', responseType: 'json' });
   }
 
   depositAmount(itemNo, amount) {
-    return this.http.put(this.depositUrl + itemNo + '?amount=' + amount, { observe: 'response', responseType: 'json' });
+    return this.http.put(this.depositUrl + itemNo + '&amount=' + amount, { observe: 'response', responseType: 'json' });
   }
 
 
