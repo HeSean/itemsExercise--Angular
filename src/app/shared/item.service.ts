@@ -18,13 +18,9 @@ export class ItemService {
   private depositUrl = 'http://localhost:8080/item/depositItemAmount?itemNo=';
 
 
-  // private items: Item[];
-  // private observableItems: BehaviorSubject<Item[]>;
 
-  constructor(private http: HttpClient, private router: Router) {
-    // this.items = new Array<Item>();
-    // this.observableItems = new BehaviorSubject([]) as BehaviorSubject<Item[]>;
-  }
+
+  constructor(private http: HttpClient, private router: Router) {  }
 
 
 
@@ -34,13 +30,10 @@ export class ItemService {
   }
 
   getAllItems() {
-    // return this.observableItems.asObservable();
     return this.http.get<Item[]>(this.getAllItemsUrl, { observe: 'response', responseType: 'json' });
   }
 
   addItem(item: Item) {
-    // this.items.push(item);
-    // this.observableItems.next(Object.assign({}, this.items));
     return this.http.post<Item>(this.addItemUrl, item, { observe: 'response', responseType: 'json' });
   }
 

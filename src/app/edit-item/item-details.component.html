@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="itemForm">
 
 
       <div>
@@ -31,11 +31,11 @@
             </div>
           </div>
         </div>
-<br>
+        <br>
         <div class="row">
           <div class="col-xs-12">
             <div class="btn-toolbar">
-              <button type="submit" class="btn btn-success" [disabled]="!this.itemForm.valid">Save</button>
+              <button class="btn btn-success" (click)="onSave()" [disabled]="!this.itemForm.valid">Save</button>
               <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
               <button class="btn btn-danger" (click)="deleteItem()">Delete Item</button>
             </div>
@@ -44,6 +44,6 @@
       </div>
     </form>
     <hr *ngIf="editMode">
-    <app-update-amount *ngIf="editMode" [currentAmount] = "currentAmount" [itemNo] = "itemNo" ></app-update-amount>
+    <app-update-amount *ngIf="editMode" [currentAmount]="currentAmount" [itemNo]="itemNo"></app-update-amount>
   </div>
 </div>

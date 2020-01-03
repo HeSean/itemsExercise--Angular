@@ -50,10 +50,10 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   deleteItem() {
-    this.itemService.deleteItem(this.itemNo).subscribe(res => { this.router.navigate(['../list']); });
+    this.itemService.deleteItem(this.itemNo).subscribe(res => { this.onCancel(); });
   }
 
-  onSubmit() {
+  onSave() {
     const newItem = new Item(
       this.itemNo,
       this.itemForm.controls.itemName.value,
