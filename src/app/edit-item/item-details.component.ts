@@ -49,6 +49,9 @@ export class ItemDetailsComponent implements OnInit {
 
   }
 
+  deleteItem() {
+    this.itemService.deleteItem(this.itemNo).subscribe(res => { this.router.navigate(['../list']); });
+  }
 
   onSubmit() {
     const newItem = new Item(
@@ -69,7 +72,4 @@ export class ItemDetailsComponent implements OnInit {
     this.router.navigate(['../list']);
   }
 
-  deleteItem() {
-    this.itemService.deleteItem(this.itemNo).subscribe();
-  }
 }
